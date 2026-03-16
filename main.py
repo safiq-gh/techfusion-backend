@@ -6,13 +6,20 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://techfusion-ui.vercel.app", "https://techfusionfrontend.vercel.app"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://techfusion-ui.vercel.app",
+        "https://techfusionfrontend.vercel.app",
+        "https://techfusion2k26.vercel.app",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 app.include_router(event.router, prefix="/api")
 app.include_router(register.router, prefix="/api")
+
+
 @app.get("/api/health")
 def health():
     return {"success": True, "data": {"status": "ok"}}
